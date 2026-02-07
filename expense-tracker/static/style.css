@@ -1,0 +1,32 @@
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    padding: 30px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 8px;
+}
+
+table {
+    margin: auto;
+    width: 70%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}

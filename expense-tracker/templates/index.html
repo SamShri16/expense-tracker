@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h1>💸 Expense Tracker</h1>
+
+<form method="POST" action="/add">
+    <input type="text" name="title" placeholder="Expense Title" required>
+    <input type="number" step="0.01" name="amount" placeholder="Amount" required>
+    <input type="text" name="category" placeholder="Category" required>
+    <button>Add</button>
+</form>
+
+<h2>Total: ₹{{ total }}</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Delete</th>
+    </tr>
+    {% for e in expenses %}
+    <tr>
+        <td>{{ e[1] }}</td>
+        <td>₹{{ e[2] }}</td>
+        <td>{{ e[3] }}</td>
+        <td><a href="/delete/{{ e[0] }}">❌</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<canvas id="expenseChart" width="400" height="200"></canvas>
+
+<script>
+const data = {
+labels: [{% for e in expenses %}"{{ e[3] }}",{% endfor %}],
+datasets: [{
+label: 'Expenses',
+data: [{% for e in expenses %}{{ e[2] }},{% endfor %}]
+}]
+};
+
+
+new Chart(document.getElementById('expenseChart'), {
+type: 'bar',
+data: data
+});
+</script>
+
+
+</body>
+</html>
